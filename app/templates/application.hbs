@@ -5,6 +5,12 @@
 	</header>
 	<section class="main">
 		<input class="toggle-all" type="checkbox">
+		<li class="todo-list">
+			{{#each todos as |todo|}}
+				{{todo-item label=todo.label isComplete=todo.isComplete}}
+			{{/each}}
+		</li>
+
 		<label for="toggle-all">Mark all as complete</label>
 	</section>
 	<footer class="footer">

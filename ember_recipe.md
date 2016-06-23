@@ -140,6 +140,23 @@ export default Ember.TextField.extend({
 });
 ```
 
+####Store the forwarded todo item in an array
+In ```app/controllers/application.js```
+
+```
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+	actions: {
+		todos: [],
+		createTodo(content){
+			this.store.createRecord('todo', {label: content});
+			this.get('todos').addObject(this.store.createRecord('todo', {label: content}));
+		}
+	}
+});
+```
+
 
 
 
