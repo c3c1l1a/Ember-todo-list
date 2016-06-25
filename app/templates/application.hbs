@@ -1,38 +1,32 @@
 <section class="todoapp">
-	<header class="header">
+<header class="header">
 		<h1>todos</h1>
 		{{new-todo placeholder="What needs to be done?" autofocus="true" createTodo=(action 'createTodo')	}}
 	</header>
-	<section class="main">
-		<input class="toggle-all" type="checkbox">
-		<li class="todo-list">
-			{{#each todos as |todo|}}
-				{{todo-item label=todo.label isComplete=todo.isComplete	destroyTodo=(action 'destroyTodo' todo)}}
-			{{/each}}
-		</li>
-
-		<label for="toggle-all">Mark all as complete</label>
-	</section>
+{{outlet}}
 	<footer class="footer">
 				<!-- This should be `0 items left` by default -->
-				<span class="todo-count"><strong>0</strong> item left</span>
+				<span class="todo-count"><strong>{{application.incompleteTodos.length}}</strong> item left</span>
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/">All</a>
+						{{#link-to 'index'}}All{{/link-to}}
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						{{#link-to 'active'}}Active{{/link-to}}
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						{{#link-to 'completed'}}Completed{{/link-to}}
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->
-				<button class="clear-completed">Clear completed</button>
+				{{#if hasCompleted}}
+					 <button class="clear-completed" onClick={{action 'clearCompleted'}}>Clear completed</button>
+				{{/if}}
 	</footer>
+
 </section>
-		<footer class="info">
+<footer class="info">
 			<p>Double-click to edit a todo</p>
 			<!-- Remove the below line ↓ -->
 			<p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>

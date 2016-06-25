@@ -1,7 +1,8 @@
-<li class="if isCompleted 'completed'">
-	<div class="view">
+<li class="{{if isCompleted 'completed'}} {{if isEditing 'editing'}}">
+	<div class="view" ondblclick={{action 'editTodo'}}>
 		<input class="toggle" type="checkbox" onclick={{action 'toggleComplete'}}>
 		<label>{{label}}</label>
 		<button class="destroy" onclick={{action destroyTodo}}></button>
 	</div>
+	{{input class='edit' value=label key-down=(action (mut label)) insert-newline=(action "doneEditing")}}
 </li>

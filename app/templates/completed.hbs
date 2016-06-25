@@ -1,0 +1,13 @@
+	<section class="main">
+		<input class="toggle-all" type="checkbox">
+		<li class="todo-list">
+			{{#each todos as |todo|}}
+				{{todo-item label=todo.label isCompleted=todo.isComplete isEditing=todo.isEditing destroyTodo=(action 'destroyTodo' todo)}}
+			{{/each}}
+		</li>
+
+		<label for="toggle-all">Mark all as complete</label>
+	</section>
+
+
+		
